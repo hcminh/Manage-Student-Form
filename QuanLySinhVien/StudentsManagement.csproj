@@ -6,8 +6,8 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{B188D02E-A6C9-4033-A0EC-B99C68BA30B2}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>QuanLySinhVien</RootNamespace>
-    <AssemblyName>QuanLySinhVien</AssemblyName>
+    <RootNamespace>StudentsManagement</RootNamespace>
+    <AssemblyName>StudentsManagement</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>

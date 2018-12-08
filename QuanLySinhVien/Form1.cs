@@ -1,27 +1,25 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
 using System.Text.RegularExpressions;
 
-namespace QuanLySinhVien
+namespace StudentsManagement
 {
     public partial class Form1 : Form
     {
-        List<Student> students;
-        Student temp_Student;
-        bool inADD = false;
+        List<Student> students; //create list student
+        Student temp_Student; // create temp student
+        //set up variable to check requirement
+        bool inADD = false; // true if in add method
         bool isOkPhone = false;
         bool isOkMail = false;
         bool isNullId = true;
         bool isNullName = true;
         bool isNullClass = true;
+        // check mail
         Regex reg = new Regex(@"^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,6}$", RegexOptions.IgnoreCase);
         public Form1()
         {
@@ -33,7 +31,7 @@ namespace QuanLySinhVien
             disableTextBox();
             loadAreaCode();
             loadStudentList();
-        }// handle event Form Load
+        }
         private void addBtn_Click(object sender, EventArgs e)
         {
             if(addBtn.Text == "ADD")
@@ -54,10 +52,11 @@ namespace QuanLySinhVien
                 this.BackColor = Color.FromArgb(204, 255, 221);
             }
             else
-                saveData("ADD");
+                saveData("ADD"); //save data width method add
         } // handle event ADD button click
         private void undoBtn_Click(object sender, EventArgs e)
         {
+            // undo actions
             undoChosing();
         }// handle event UNDO button click
         private void undoChosing()
@@ -77,7 +76,7 @@ namespace QuanLySinhVien
             disableTextBox();
             //change bg
             this.BackColor = Color.Azure;
-        }
+        } // undo actions
         private void modifyBtn_Click(object sender, EventArgs e)
         {
             if (modifyBtn.Text == "MODIFY")
@@ -94,13 +93,14 @@ namespace QuanLySinhVien
                 this.BackColor = Color.FromArgb(255, 255, 204);
             }
             else
-                saveData("MODIFY");
+                saveData("MODIFY"); //save data width method modify
         }// handle event MODIFY button click
         private void deleteBtn_Click(object sender, EventArgs e)
         {
             this.BackColor = Color.FromArgb(255, 179, 179);
-            if (isReadyData())
+            if (isReadyData()) // check that if data fill all textbox
             {
+                // ask user to delete
                 if (MessageBox.Show("Are you really want to remove " + temp_Student.Name + " ?", "Remove student", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
                     // user clicked yes
@@ -109,16 +109,17 @@ namespace QuanLySinhVien
                 }
             }
             else
-                MessageBox.Show("Please seclect student row to delete!");
+                MessageBox.Show("Please seclect student row to delete!"); //notify if err
             undoChosing();
         }// handle event DELETE button click
         private void removeData()
         {
+            // check array to delete data
             for(int i = 0; i < students.Count; i++)
             {
-                if(students[i].Id == temp_Student.Id)
+                if(students[i].Id == temp_Student.Id) // if id selection compare id element in array
                 {
-                    students.Remove(students[i]);
+                    students.Remove(students[i]); // detele element in array
                     break;
                 }
             }
@@ -126,6 +127,7 @@ namespace QuanLySinhVien
         }
         private void enableTextBox()
         {
+            // enable to fill data
             nameTextBox.Enabled = true;
             idTextBox.Enabled = true;
             classTextBox.Enabled = true;
@@ -139,6 +141,7 @@ namespace QuanLySinhVien
         }// enable all text box
         private void resetDataTextBox()
         {
+            //reset all textbox in new activities
             nameTextBox.Text = "";
             idTextBox.Text = "";
             classTextBox.Text = "";
@@ -147,12 +150,14 @@ namespace QuanLySinhVien
             mailErrLabel.Visible = false;
             maleRadio.Checked = true;
             codeBox.SelectedIndex = 0;
+            // set min max of age
             birthDate.MaxDate = new System.DateTime(DateTime.Now.Year - 17, 12, 31, 0, 0, 0, 0);
             birthDate.MinDate = new System.DateTime(DateTime.Now.Year - 35, 1, 1, 0, 0, 0, 0);
             birthDate.Value = birthDate.MaxDate;
         }
         private void disableTextBox()
         {
+            // disable all activities
             nameTextBox.Enabled = false;
             idTextBox.Enabled = false;
             classTextBox.Enabled = false;
@@ -164,19 +169,20 @@ namespace QuanLySinhVien
             codeBox.Enabled = false;
             birthDate.Enabled = false;
         } // disable Text Box
-        private void loadAreaCode()
+        private void loadAreaCode() 
         {
             StreamReader reader = new StreamReader(Application.StartupPath + "\\..\\..\\Resources\\AreaCode.txt");
-            string areaCode = reader.ReadLine();
+            string areaCode = reader.ReadLine();// read each line to add to combobox
             while (areaCode != null)
             {
                 codeBox.Items.Add(areaCode.ToString());
                 areaCode = reader.ReadLine();
             }
-        }
+        }// load data of file to combobox
         private void loadStudentList()
         {
-            students = new List<Student>();
+            students = new List<Student>(); // create list student
+            // read and add data to each intance of student
             StreamReader reader = new StreamReader(Application.StartupPath + "\\..\\..\\Resources\\StudentList.txt");
             string infoStudent = reader.ReadLine();
 
@@ -189,13 +195,14 @@ namespace QuanLySinhVien
                 sinhvienDataGrid.Rows.Add(student.Name, student.Id, student.Class, student.Birth, student.Gender, student.Phone, student.Code, student.Mail);
             }
             reader.Close();
-        }
+        } // load data of students 
         private void refeshDataGrid(string method)
         {
+            // reload datagridview
             DataGridViewRowCollection listStudent = sinhvienDataGrid.Rows;
             Student student = new Student(getStudentProperty());
-            if(method == "MODIFY")
-                for(int i=0;i<listStudent.Count; i++)
+            if(method == "MODIFY") // reload datagridview if method modify
+                for (int i=0;i<listStudent.Count; i++)
                 {
                     if(listStudent[i].Cells[1].Value.ToString() == temp_Student.Id)
                     {
@@ -212,23 +219,25 @@ namespace QuanLySinhVien
                 }
             else if(method == "ADD")
             {
+                // reload datagridview if method add
                 sinhvienDataGrid.Rows.Add(student.Name, student.Id, student.Class, student.Birth, student.Gender, student.Phone, student.Code, student.Mail);
             }
             //sinhvienDataGrid.Rows.Clear();
             sinhvienDataGrid.Refresh();
             //loadStudentList();
-        }
+        } // reload data
         private void loadDataFromList()
         {
-            sinhvienDataGrid.Rows.Clear();
+            sinhvienDataGrid.Rows.Clear(); //clear datagridview for new data
             foreach(Student student in students)
             {
                 sinhvienDataGrid.Rows.Add(student.Name, student.Id, student.Class, student.Birth, student.Gender, student.Phone, student.Code, student.Mail);
             }
-            sinhvienDataGrid.Refresh();
-        }
+            sinhvienDataGrid.Refresh(); //refresh datagridview
+        } // fill datagridview with list student
         private void saveStudentList()
         {
+            // save each student to file
             StreamWriter writer = new StreamWriter(Application.StartupPath + "\\..\\..\\Resources\\StudentList.txt", false, Encoding.UTF8);
             foreach(Student student in students)
             {
@@ -236,13 +245,14 @@ namespace QuanLySinhVien
                 writer.WriteLine(line);
             }
             writer.Close();
-        }
+        } //save list student to file
         private void sinhvienDataGrid_RowHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
-            if (!inADD)
+            if (!inADD) // if not in add method
             {
                 try
                 {
+                    //try to save property to file
                     DataGridViewCellCollection infos = sinhvienDataGrid.CurrentRow.Cells;
                     nameTextBox.Text = infos[0].Value.ToString();
                     idTextBox.Text = infos[1].Value.ToString();
@@ -254,7 +264,7 @@ namespace QuanLySinhVien
                     mailTextBox.Text = infos[7].Value.ToString();
 
                 }
-                catch(Exception)
+                catch(Exception) //catch err
                 {
                     MessageBox.Show("Cant not select this row!!");
                 }
@@ -262,7 +272,7 @@ namespace QuanLySinhVien
                 temp_Student = new Student(getStudentProperty());
             }
 
-        }
+        } //handle event when row header clicked
         private string getGender()
         {
             if (maleRadio.Checked)
@@ -270,11 +280,11 @@ namespace QuanLySinhVien
             else if (femaleRadio.Checked)
                 return "Female";
             return "Other";
-        }
+        } //get string gender of student form radio box
         private string getStudentProperty()
         {
             return nameTextBox.Text + "~" + idTextBox.Text + "~" + classTextBox.Text + "~" + birthDate.Value.ToShortDateString() + "~" + getGender() + "~" + codeBox.Text + "~" + phoneTextBox.Text + "~" + mailTextBox.Text;
-        }
+        } // get students informations from text box
         private void loadGender(string gender)
         {
             if (gender == "Male")
@@ -282,7 +292,7 @@ namespace QuanLySinhVien
             else if (gender == "Female")
                 femaleRadio.Checked = true;
             else otherRadio.Checked = true;
-        }
+        } //load gender of student to radio box
         private void saveData(string method)
         {
             if (isReadyData())
@@ -336,14 +346,14 @@ namespace QuanLySinhVien
 
             }
                 
-        }
+        } // save data to file
         private void saveData_methodADD()
         {
             
                 Student student = new Student(getStudentProperty());
                 students.Add(student);
                 saveStudentList();
-        }
+        } // save data with method add
         private void saveData_methodModify()
         {
             Student student = new Student(getStudentProperty());
@@ -351,14 +361,12 @@ namespace QuanLySinhVien
             {
                 if (students[i].Id == temp_Student.Id)
                 {
-                    
                     students[i] = student;
-                    MessageBox.Show(students[i].Name + " " + students[i].Id + " " + students[i].Class + " " + students[i].Birth + " " + students[i].Gender + " " + students[i].Code + " " + students[i].Phone + " " + students[i].Mail);
                     break;
                 }
             }
             saveStudentList();
-        }
+        } //// save data with method modify
         private bool isReadyData()
         {
             if (nameTextBox.Text == "")
@@ -385,13 +393,13 @@ namespace QuanLySinhVien
             if (isOkMail && isOkPhone)
                 return true;
             return false;
-        }
+        } // check that if data is ready to use
         private void nameTextBox_TextChanged(object sender, EventArgs e)
         {
             nameTextBox.Text = System.Threading.Thread.CurrentThread.CurrentCulture.TextInfo.ToTitleCase(this.nameTextBox.Text);
             nameTextBox.Select(nameTextBox.Text.Length, 0);
             nameErrLabel.Visible = false;
-        }
+        } //handle event when text box name changed
 
         private void phoneTextBox_TextChanged(object sender, EventArgs e)
         {
@@ -415,7 +423,12 @@ namespace QuanLySinhVien
                 phoneErrLabel1.Visible = true;
                 isOkPhone = false;
             }
-        }
+            if(digits.Length <= 0)
+            {
+                phoneErrLabel1.Visible = true;
+                isOkPhone = false;
+            }
+        } //handle event when text box phone changed
 
         private void mailTextBox_TextChanged(object sender, EventArgs e)
         {
@@ -430,25 +443,24 @@ namespace QuanLySinhVien
                 mailErrLabel.Visible = true;
                 isOkMail = false;
             }
-        }
+        } //handle event when text box mail changed
 
         private void idTextBox_TextChanged(object sender, EventArgs e)
         {
             idErrLabel.Visible = false;
-        }
+        } //handle event when text box id changed
 
         private void classTextBox_TextChanged(object sender, EventArgs e)
         {
             classErrLabel.Visible = false;
-        }
+        } //handle event when text box class changed
 
-        private void phoneTextBox_KeyPress(object sender, KeyPressEventArgs e)
+        private void phoneTextBox_KeyPress(object sender, KeyPressEventArgs e) 
         {
             if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
             {
                 e.Handled = true;
             }
-        }
+        } //handle event when text box name changed -> use for deny alpha click
     }
 }
-// chưa cmt

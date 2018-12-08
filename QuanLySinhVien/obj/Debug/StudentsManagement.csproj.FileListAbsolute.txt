@@ -1,0 +1,10 @@
+D:\Documents\Project C#\QuanLySinhVien\QuanLySinhVien\obj\Debug\StudentsManagement.csprojAssemblyReference.cache
+D:\Documents\Project C#\QuanLySinhVien\QuanLySinhVien\obj\Debug\StudentsManagement.Form1.resources
+D:\Documents\Project C#\QuanLySinhVien\QuanLySinhVien\obj\Debug\StudentsManagement.Properties.Resources.resources
+D:\Documents\Project C#\QuanLySinhVien\QuanLySinhVien\obj\Debug\StudentsManagement.csproj.GenerateResource.cache
+D:\Documents\Project C#\QuanLySinhVien\QuanLySinhVien\obj\Debug\StudentsManagement.csproj.CoreCompileInputs.cache
+D:\Documents\Project C#\QuanLySinhVien\QuanLySinhVien\obj\Debug\StudentsManagement.exe
+D:\Documents\Project C#\QuanLySinhVien\QuanLySinhVien\obj\Debug\StudentsManagement.pdb
+D:\Documents\Project C#\QuanLySinhVien\QuanLySinhVien\bin\Debug\StudentsManagement.exe.config
+D:\Documents\Project C#\QuanLySinhVien\QuanLySinhVien\bin\Debug\StudentsManagement.exe
+D:\Documents\Project C#\QuanLySinhVien\QuanLySinhVien\bin\Debug\StudentsManagement.pdb

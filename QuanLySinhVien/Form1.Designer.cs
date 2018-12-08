@@ -1,4 +1,4 @@
-﻿namespace QuanLySinhVien
+﻿namespace StudentsManagement
 {
     partial class Form1
     {
@@ -76,14 +76,14 @@
             // 
             this.label1.BackColor = System.Drawing.Color.Transparent;
             this.label1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.label1.Font = new System.Drawing.Font("Tahoma", 48F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.label1.Font = new System.Drawing.Font("Tahoma", 40F);
             this.label1.Location = new System.Drawing.Point(10, 10);
             this.label1.Margin = new System.Windows.Forms.Padding(0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(1162, 95);
             this.label1.TabIndex = 0;
-            this.label1.Text = "Quản Lí Sinh Viên";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.label1.Text = "STUDENTS MANAGEMENT";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // panel1
             // 
@@ -201,7 +201,7 @@
             this.modifyBtn.Location = new System.Drawing.Point(837, 197);
             this.modifyBtn.Name = "modifyBtn";
             this.modifyBtn.Size = new System.Drawing.Size(125, 45);
-            this.modifyBtn.TabIndex = 25;
+            this.modifyBtn.TabIndex = 12;
             this.modifyBtn.Text = "MODIFY";
             this.modifyBtn.UseVisualStyleBackColor = false;
             this.modifyBtn.Click += new System.EventHandler(this.modifyBtn_Click);
@@ -227,7 +227,7 @@
             this.addBtn.Location = new System.Drawing.Point(674, 197);
             this.addBtn.Name = "addBtn";
             this.addBtn.Size = new System.Drawing.Size(125, 45);
-            this.addBtn.TabIndex = 23;
+            this.addBtn.TabIndex = 11;
             this.addBtn.Text = "ADD";
             this.addBtn.UseVisualStyleBackColor = false;
             this.addBtn.Click += new System.EventHandler(this.addBtn_Click);
@@ -239,7 +239,7 @@
             this.phoneTextBox.MaxLength = 10;
             this.phoneTextBox.Name = "phoneTextBox";
             this.phoneTextBox.Size = new System.Drawing.Size(292, 28);
-            this.phoneTextBox.TabIndex = 22;
+            this.phoneTextBox.TabIndex = 9;
             this.phoneTextBox.WordWrap = false;
             this.phoneTextBox.TextChanged += new System.EventHandler(this.phoneTextBox_TextChanged);
             this.phoneTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.phoneTextBox_KeyPress);
@@ -251,7 +251,7 @@
             this.codeBox.Location = new System.Drawing.Point(730, 91);
             this.codeBox.Name = "codeBox";
             this.codeBox.Size = new System.Drawing.Size(78, 29);
-            this.codeBox.TabIndex = 21;
+            this.codeBox.TabIndex = 8;
             // 
             // otherRadio
             // 
@@ -259,7 +259,7 @@
             this.otherRadio.Location = new System.Drawing.Point(941, 44);
             this.otherRadio.Name = "otherRadio";
             this.otherRadio.Size = new System.Drawing.Size(65, 21);
-            this.otherRadio.TabIndex = 18;
+            this.otherRadio.TabIndex = 7;
             this.otherRadio.Text = "Other";
             this.otherRadio.UseVisualStyleBackColor = true;
             // 
@@ -269,7 +269,7 @@
             this.femaleRadio.Location = new System.Drawing.Point(828, 43);
             this.femaleRadio.Name = "femaleRadio";
             this.femaleRadio.Size = new System.Drawing.Size(75, 21);
-            this.femaleRadio.TabIndex = 17;
+            this.femaleRadio.TabIndex = 6;
             this.femaleRadio.Text = "Female";
             this.femaleRadio.UseVisualStyleBackColor = true;
             // 
@@ -280,7 +280,7 @@
             this.maleRadio.Location = new System.Drawing.Point(730, 43);
             this.maleRadio.Name = "maleRadio";
             this.maleRadio.Size = new System.Drawing.Size(59, 21);
-            this.maleRadio.TabIndex = 16;
+            this.maleRadio.TabIndex = 5;
             this.maleRadio.TabStop = true;
             this.maleRadio.Text = "Male";
             this.maleRadio.UseVisualStyleBackColor = true;
@@ -291,7 +291,7 @@
             this.mailTextBox.Location = new System.Drawing.Point(730, 143);
             this.mailTextBox.Name = "mailTextBox";
             this.mailTextBox.Size = new System.Drawing.Size(390, 28);
-            this.mailTextBox.TabIndex = 15;
+            this.mailTextBox.TabIndex = 10;
             this.mailTextBox.WordWrap = false;
             this.mailTextBox.TextChanged += new System.EventHandler(this.mailTextBox_TextChanged);
             // 
@@ -302,7 +302,7 @@
             this.birthDate.Location = new System.Drawing.Point(114, 194);
             this.birthDate.Name = "birthDate";
             this.birthDate.Size = new System.Drawing.Size(366, 32);
-            this.birthDate.TabIndex = 14;
+            this.birthDate.TabIndex = 4;
             this.birthDate.Value = new System.DateTime(1999, 12, 31, 0, 0, 0, 0);
             // 
             // label9
@@ -344,7 +344,7 @@
             this.classTextBox.Location = new System.Drawing.Point(114, 146);
             this.classTextBox.Name = "classTextBox";
             this.classTextBox.Size = new System.Drawing.Size(366, 28);
-            this.classTextBox.TabIndex = 9;
+            this.classTextBox.TabIndex = 3;
             this.classTextBox.WordWrap = false;
             this.classTextBox.TextChanged += new System.EventHandler(this.classTextBox_TextChanged);
             // 
@@ -354,7 +354,7 @@
             this.idTextBox.Location = new System.Drawing.Point(114, 93);
             this.idTextBox.Name = "idTextBox";
             this.idTextBox.Size = new System.Drawing.Size(366, 28);
-            this.idTextBox.TabIndex = 8;
+            this.idTextBox.TabIndex = 2;
             this.idTextBox.WordWrap = false;
             this.idTextBox.TextChanged += new System.EventHandler(this.idTextBox_TextChanged);
             // 
@@ -364,7 +364,7 @@
             this.nameTextBox.Location = new System.Drawing.Point(114, 38);
             this.nameTextBox.Name = "nameTextBox";
             this.nameTextBox.Size = new System.Drawing.Size(366, 28);
-            this.nameTextBox.TabIndex = 7;
+            this.nameTextBox.TabIndex = 1;
             this.nameTextBox.WordWrap = false;
             this.nameTextBox.TextChanged += new System.EventHandler(this.nameTextBox_TextChanged);
             // 
